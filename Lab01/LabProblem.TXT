@@ -4,24 +4,24 @@ them with documentation. From your account in the campus network, you will acces
 \\win\Criptografie_predare , create a directory of the form Surname-Name and a subdirectory with
 the name Lab1, and place your project there.
 Problem: Classical cryptography.
-• You will be assigned one of the following ciphers during the labs:
+ï¿½ You will be assigned one of the following ciphers during the labs:
 1. Caesar cipher.
 2. Substitution cipher.
 3. Affine cipher.
 4. Belaso cipher.
 5. Hill cipher (for m = 2).
 6. Permutation cipher.
-• Create a project with the following features:
-(i) A graphical interface. The alphabet will have 27 characters: the blank and the 26 letters of the
-English alphabet.
-(ii) Given an encryption key and a plaintext, encrypts the plaintext. There will be a key validation
-and a plaintext validation.
-(iii) Given an encryption key and a ciphertext, computes the decryption key and then decrypts the
-ciphertext.
+       ï¿½ Create a project with the following features:
+       (i) A graphical interface. The alphabet will have 27 characters: the blank and the 26 letters of the
+       English alphabet.
+       (ii) Given an encryption key and a plaintext, encrypts the plaintext. There will be a key validation
+       and a plaintext validation.
+       (iii) Given an encryption key and a ciphertext, computes the decryption key and then decrypts the
+       ciphertext.
 Points
-• 1.5p if handed in by Week 5 or Week 6.
-• 1p if handed in by Week 7 or Week 8.
-• 0.5p if handed in by Week 9 or Week 10.
+ï¿½ 1.5p if handed in by Week 5 or Week 6.
+ï¿½ 1p if handed in by Week 7 or Week 8.
+ï¿½ 0.5p if handed in by Week 9 or Week 10.
 Note. Each student will keep her/his semigroup for the lab throughout the semester! Taking and
 presenting labs in weeks with a changed parity may only be done in exceptional cases, if the teaching
 assistant agrees with it and if time allows.
