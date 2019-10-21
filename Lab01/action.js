@@ -4,13 +4,17 @@ function main() {
 
     isEncryptionGenerated = false;
 
-    validateLetter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z', 'space'];
+    validateLetter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z', 'W', 'space'];
 
     var randomProperty = function (obj) {
         // function to take random some keys from an object
         var keys = Object.keys(obj);
         return obj[keys[keys.length * Math.random() << 0]];
     };
+
+    function hasDuplicates(array) {
+        return (new Set(array)).size !== array.length;
+    }
 
     function validateEncryptionFunction() {
         let aValue = $("#a").val();
@@ -41,15 +45,18 @@ function main() {
         let wValue = $("#w").val();
         let spaceValue = $("#space").val();
         inputValues = [];
-        inputValues.push(aValue, bValue, cValue, dValue, eValue, fValue, gValue, hValue, iValue, jValue, kValue, lValue, mValue, nValue, oValue, pValue, qValue, rValue, spaceValue, sValue, tValue, uValue, vValue, wValue, xValue, yValue, zValue);
-        for (value of inputValues)
-        {
-            if(!validateLetter.includes(value))
-            {
+        inputValues.push(aValue, bValue, cValue, dValue, eValue, fValue, gValue, hValue, iValue, jValue, kValue, lValue, mValue, nValue, oValue, pValue, qValue, rValue, sValue, tValue, uValue, vValue, wValue, xValue, yValue, zValue, spaceValue,);
+        for (value of inputValues) {
+            if (!validateLetter.includes(value)) {
                 alert("Invalid Encryption function input");
-                return
+                return false
             }
         }
+        if (hasDuplicates(inputValues) === true) {
+            alert("Encryption function has duplicate keys");
+            return false
+        }
+        return inputValues;
     }
 
     function validateOnlySmallAndSpace(value) {
@@ -78,9 +85,57 @@ function main() {
 
     }
 
-    $("#encryptionFunction").click(()=> {
+    function showTable() {
+        //we create a list with the dict and show it with jQuerry
+        list = '<ul>';
+        for (var i in encription_function) {
+            list += "<li> " + i.toString() + " ->" + encription_function[i].toString() + " </li>";
+        }
+        list += '</ul>';
+
+        listTwo = '<ul>';
+        for (var i in decription_function) {
+            listTwo += "<li> " + i.toString() + " ->" + decription_function[i].toString() + " </li>";
+        }
+        list += '</ul>';
+        listTwo += '</ul>';
+        $(".encryp_func").html(list + listTwo);
+    }
+
+    $("#encryptionFunction").click(() => {
         //the callback which takes the value from the input ,validates it and encripts if its the case
-        validateEncryptionFunction();
+        if (validateEncryptionFunction() !== false) {
+            isEncryptionGenerated = true;
+            encription_function = {};
+            decription_function = {};
+            var i = 97;
+            for (elem of validateEncryptionFunction()) {
+                if (elem === 'space') {
+                    if (i === 123) {
+                        encription_function[' '] = ' ';
+                        decription_function[' '] = ' ';
+
+                    } else {
+
+                        encription_function[String.fromCharCode(i)] = ' ';
+                        decription_function[' '] = String.fromCharCode(i);
+                    }
+                } else {
+                    if (i === 123) {
+                        encription_function[' '] = elem;
+                        decription_function[elem] = ' ';
+
+                    } else {
+                        encription_function[String.fromCharCode(i)] = elem;
+                        decription_function[elem] = String.fromCharCode(i);
+                    }
+                }
+                i = i + 1;
+
+            }
+            showTable();
+        }
+
     });
 
 
