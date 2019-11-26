@@ -1,9 +1,14 @@
 function main() {
+    //dictionary for the encryption function
     encription_function = {};
+
+    //dictionary for the description function
     decription_function = {};
 
+    //flag to see if the encryption is generated
     isEncryptionGenerated = false;
 
+    //array with the valid letters of the alphabet
     validateLetter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z', 'W', 'space'];
 
     var randomProperty = function (obj) {
@@ -17,6 +22,8 @@ function main() {
     }
 
     function validateEncryptionFunction() {
+        //function thath checks if encription function is valid
+        //tacking all hard coded values
         let aValue = $("#a").val();
         let bValue = $("#b").val();
         let cValue = $("#c").val();
@@ -45,14 +52,18 @@ function main() {
         let wValue = $("#w").val();
         let spaceValue = $("#space").val();
         inputValues = [];
+        //putting the values into an array
         inputValues.push(aValue, bValue, cValue, dValue, eValue, fValue, gValue, hValue, iValue, jValue, kValue, lValue, mValue, nValue, oValue, pValue, qValue, rValue, sValue, tValue, uValue, vValue, wValue, xValue, yValue, zValue, spaceValue,);
         for (value of inputValues) {
+            //validating every input
             if (!validateLetter.includes(value)) {
+                //check if the letters are in the validation array
                 alert("Invalid Encryption function input");
                 return false
             }
         }
         if (hasDuplicates(inputValues) === true) {
+            //check if you write a letter twice
             alert("Encryption function has duplicate keys");
             return false
         }
@@ -60,7 +71,7 @@ function main() {
     }
 
     function validateOnlySmallAndSpace(value) {
-        // validate if the string contains only small letters and space
+        // validate if the string contains only small letters and space with the ascii code
         for (var i = 0; i < value.length; i++) {
             if ((value[i].charCodeAt(0) < 97 || value[i].charCodeAt(0) > 122) && value[i].charCodeAt(0) !== 32) {
                 //we return false if it is not good
@@ -73,7 +84,7 @@ function main() {
     }
 
     function validateOnlyBigAndSpace(value) {
-        // validate if the string contains only small letters and space
+        // validate if the string contains only small letters and space with ascii code
         for (var i = 0; i < value.length; i++) {
             if ((value[i].charCodeAt(0) < 65 || value[i].charCodeAt(0) > 90) && value[i].charCodeAt(0) !== 32) {
                 //we return false if it is not good
@@ -87,6 +98,7 @@ function main() {
 
     function showTable() {
         //we create a list with the dict and show it with jQuerry
+        //generate the table
         list = '<ul>';
         for (var i in encription_function) {
             list += "<li> " + i.toString() + " ->" + encription_function[i].toString() + " </li>";
@@ -108,15 +120,21 @@ function main() {
             isEncryptionGenerated = true;
             encription_function = {};
             decription_function = {};
+            //we start with the ascii code of a (the value of the left side of the dict)
             var i = 97;
+            //generating the encryption function from the input array starting with the ascii code of a
+            //we generate the decryption function in the same time with the encryption one
             for (elem of validateEncryptionFunction()) {
+                //elem represents every letter in the array of the input values
                 if (elem === 'space') {
+                    //decription dictionaryi is made exactly in the inverse of the encryption dictionary
                     if (i === 123) {
+                        //when we get to the last element(it is the key of space) - the ascii code of 123
+                        //it is not valid, so we hard coded /space
                         encription_function[' '] = ' ';
                         decription_function[' '] = ' ';
 
                     } else {
-
                         encription_function[String.fromCharCode(i)] = ' ';
                         decription_function[' '] = String.fromCharCode(i);
                     }
@@ -140,6 +158,7 @@ function main() {
 
 
     $("#encrypt-btn").click(function () {
+        //checking if we have ecnryption and decription generated
         if (!isEncryptionGenerated) {
             alert("Encryption not generated");
             return
@@ -152,7 +171,7 @@ function main() {
             //we iterate through all the letters and transfrom the letters by the encryption rule
             let rez = '';
             for (var i = 0; i < inputValue.length; i++) {
-
+                //if its space we append a special character
                 if (encription_function[inputValue.charAt(i)] === ' ') {
                     rez += '\xa0';
                 } else {
@@ -177,7 +196,7 @@ function main() {
             //apply the same algorithm but with the decription function
             let rez = '';
             for (var i = 0; i < inputValue.length; i++) {
-
+                //if its space we append a special character (code of space)
                 if (decription_function[inputValue.charAt(i)] === ' ') {
                     rez += '\xa0';
                 } else {
