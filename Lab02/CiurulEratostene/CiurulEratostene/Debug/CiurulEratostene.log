@@ -1,0 +1,5 @@
+﻿  CiurulEratostene.cpp
+c:\cripto\criptography\lab02\ciuruleratostene\ciuruleratostene\ciuruleratostene.cpp(27): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+c:\cripto\criptography\lab02\ciuruleratostene\ciuruleratostene\ciuruleratostene.cpp(33): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+c:\cripto\criptography\lab02\ciuruleratostene\ciuruleratostene\ciuruleratostene.cpp(33): warning C4244: '+=': conversion from '__int64' to 'int', possible loss of data
+  CiurulEratostene.vcxproj -> C:\cripto\Criptography\Lab02\CiurulEratostene\Debug\CiurulEratostene.exe
